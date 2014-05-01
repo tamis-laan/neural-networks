@@ -7,6 +7,6 @@ function [] = visualize_raw_joints_movie(joints)
         pause(0.01);
         clf;
     end
-
+    close();
 end
 
