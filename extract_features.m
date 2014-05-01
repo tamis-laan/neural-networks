@@ -48,7 +48,7 @@ for i=1:size(joints,1)
     features{i}(25)=(joints{i}(16,2)-joints{i}(15,2))/(joints{i}(4,2)-joints{i}(20,2));
     features{i}(26)=(joints{i}(16,3)-joints{i}(15,3))/(joints{i}(4,2)-joints{i}(20,2));
     
-    %Head angles
+    %Head orientation
     a=joints{i}(4,:)-joints{i}(3,:);
     b=joints{i}(2,:)-joints{i}(3,:);
     features{i}(27)=atan2(norm(cross(a,b)), dot(a,b));
