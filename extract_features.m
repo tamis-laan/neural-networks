@@ -1,6 +1,4 @@
-function features=extract_features(filename)
-
-joints=extract_joints(filename);
+function features=extract_features(joints)
 
 features=cell(size(joints,1),1);
 
