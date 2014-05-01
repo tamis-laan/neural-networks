@@ -1,9 +1,20 @@
 function [joints]=extract_joints(filename) 
 [~,~,data]=xlsread(filename);
 
+%% Frame counter
+frame=0;
+for i=1:size(data,1)
+%     for j=1:size(data,2)
+        if strcmp(data{i,1}, 'Tracked Skeleton Frame: ')== 1
+            frame = frame+1;
+        end
+        
+%     end
+end
+
 %% Joint Extraction
 
-joints=cell(1490,1);
+joints=cell(frame,1);
 frame=0;
 
 for i=1:size(data,1)
