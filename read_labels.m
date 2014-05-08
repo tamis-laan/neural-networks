@@ -29,4 +29,5 @@ function [dicionario]=read_labels(filename)
             dicionario{i,4} = 3;
         end
     end
+
 end
