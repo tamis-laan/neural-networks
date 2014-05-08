@@ -23,40 +23,43 @@ function [joints]=extract_joints(filename)
 % 19 - Ankle Right
 % 20 - Foot Right
 
-[~,~,data]=xlsread(filename);
-
-%% Frame counter
 frame=0;
-for i=1:size(data,1)
-%     for j=1:size(data,2)
-        if strcmp(data{i,1}, 'Tracked Skeleton Frame: ')== 1
-            frame = frame+1;
-        end
-        
-%     end
-end
 
-%% Joint Extraction
+fileID=fopen(filename);
+
+while feof(fileID) ~= 1
+    
+    track=fscanf(fileID, '%s/n');
+    fgets(fileID);
+    
+    if strcmp(track, 'Tracked')==1
+        frame = frame + 1;
+    end
+end
 
 joints=cell(frame,1);
 frame=0;
 
-for i=1:size(data,1)
-%     for j=1:size(data,2)
-        if strcmp(data{i,1}, 'Tracked Skeleton Frame: ')== 1
-            frame = frame+1;
-            joints{frame}=zeros(20,3);
-            for k=1:20
-                for l=1:3
-                   joints{frame}(k,l)=data{i+2*k,l+4};
-                end
-            end
+fclose(fileID);
+
+fileID=fopen(filename);
+
+while feof(fileID) ~= 1
+    
+    track=fscanf(fileID, '%s/n');
+    fgets(fileID);
+    
+    if strcmp(track, 'Tracked')==1
+        frame = frame + 1;
+        joints{frame}=zeros(20,3);
+        for k=1:20
+           fscanf(fileID, '%d %d %d %s/n');
+           for l=1:3
+            joints{frame}(k,l)=fscanf(fileID,'%f/n');
+           end
         end
-        
-%     end
+    end
 end
-        
 
-%%
-
+fclose(fileID);
 end
