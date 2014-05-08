@@ -35,8 +35,8 @@ REGRESSION=0;
 CLASSIFIER=1;
 
 %%%%%%%%%%% Load training dataset
-T=Data(:,1)'
-P=Data(:,2:size(Data,2))'
+T=Data(:,1)';
+P=Data(:,2:size(Data,2))';
 
 NumberofTrainingData=size(P,2);
 NumberofInputNeurons=size(P,1);
