@@ -6,7 +6,6 @@ function [features] = extract_group_features_sitting(joints,label)
 end
 
 function out = extract_group_feature_sitting(joints,label,frame)
-    disp('hello')
     %%Extract joint data
     ShoulderCenter  = joints{frame}(3,:);
     Head            = joints{frame}(4,:);
@@ -44,7 +43,7 @@ function out = extract_group_feature_sitting(joints,label,frame)
                         t2  = (HandRight-WristRight)/norm(HandRight-WristRight);
     hand_angle_right        = acos(t1*t2')/pi * 180;
     
-    out = [label,shoulders_head,shoulders_shoulderleft,shoulders_shoulderright,body_angle,elbow_angle_left,hand_angle_left,elbow_angle_right,hand_angle_right]
+    out = [label,shoulders_head,shoulders_shoulderleft,shoulders_shoulderright,body_angle,elbow_angle_left,hand_angle_left,elbow_angle_right,hand_angle_right];
 
 end
 
