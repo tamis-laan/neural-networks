@@ -23,8 +23,6 @@ function [joints]=extract_joints(filename)
     % 19 - Ankle Right
     % 20 - Foot Right
 
-    cd 'Data Files'
-
     frame=0;
 
     fileID=fopen(filename);
@@ -67,6 +65,4 @@ function [joints]=extract_joints(filename)
     end
 
     fclose(fileID);
-    
-    cd ..
 end
