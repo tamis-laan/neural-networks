@@ -1,7 +1,7 @@
 function [features] = extract_group_features_sitting(joints,label)
     features = [];
     for i = 1:length(joints) 
-        features = [features;extract_group_feature_sitting(joints,label(i),i)];
+        features = [features;extract_group_feature_sitting(joints,label,i)];
     end
 end
 
