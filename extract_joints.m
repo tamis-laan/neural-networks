@@ -62,7 +62,6 @@ function [joints]=extract_joints(filename)
 
             end
             
-            fgets(fileID);
             aux=fscanf(fileID, '%s/n');
             
             if strcmp(aux, 'Tracking')==1
