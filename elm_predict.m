@@ -1,4 +1,4 @@
-function [output] = elm_predict(Data)
+function [TestingTime, TestingAccuracy] = elm_predict(TestingData_File)
 
 % Usage: elm_predict(TestingData_File)
 % OR:    [TestingTime, TestingAccuracy] = elm_predict(TestingData_File)
@@ -29,13 +29,30 @@ REGRESSION=0;
 CLASSIFIER=1;
 
 %%%%%%%%%%% Load testing dataset
-
-TV.P=Data';
+test_data=load(TestingData_File);
+TV.T=test_data(:,1)';
+TV.P=test_data(:,2:size(test_data,2))';
+clear test_data;                                    %   Release raw testing data array
 
 NumberofTestingData=size(TV.P,2);
 
 load elm_model.mat;
-                                         %   end if of Elm_Type
+
+if Elm_Type~=REGRESSION
+
+    %%%%%%%%%% Processing the targets of testing
+    temp_TV_T=zeros(NumberofOutputNeurons, NumberofTestingData);
+    for i = 1:NumberofTestingData
+        for j = 1:size(label,2)
+            if label(1,j) == TV.T(1,i)
+                break; 
+            end
+        end
+        temp_TV_T(j,i)=1;
+    end
+    TV.T=temp_TV_T*2-1;
+
+end                                                 %   end if of Elm_Type
 
 %%%%%%%%%%% Calculate the output of testing input
 start_time_test=cputime;
@@ -60,4 +77,24 @@ TY=(H_test' * OutputWeight)';                       %   TY: the actual output of
 end_time_test=cputime;
 TestingTime=end_time_test-start_time_test           %   Calculate CPU time (seconds) spent by ELM predicting the whole testing data
 
-output = TY;
+if Elm_Type == REGRESSION
+    TestingAccuracy=sqrt(mse(TV.T - TY))            %   Calculate testing accuracy (RMSE) for regression case
+    output=TY;
+end
+
+if Elm_Type == CLASSIFIER
+%%%%%%%%%% Calculate training & testing classification accuracy
+    MissClassificationRate_Testing=0;
+
+    for i = 1 : size(TV.T, 2)
+        [x, label_index_expected]=max(TV.T(:,i));
+        [x, label_index_actual]=max(TY(:,i));
+        output(i)=label(label_index_actual);        
+        if label_index_actual~=label_index_expected
+            MissClassificationRate_Testing=MissClassificationRate_Testing+1;
+        end
+    end
+    TestingAccuracy=1-MissClassificationRate_Testing/NumberofTestingData  
+end
+
+save('elm_output','output');
