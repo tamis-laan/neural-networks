@@ -37,5 +37,3 @@ hold on
 plot(x,y1,'b')
 plot(x,y2,'r')
 hold off
-
-

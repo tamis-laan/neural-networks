@@ -61,6 +61,16 @@ function [joints]=extract_joints(filename)
                joints{frame,2}=fscanf(fileID,'Color frame: %d/n');
 
             end
+            
+            aux=fscanf(fileID, '%s/n');
+            
+            if strcmp(aux, 'Tracking')==1
+                fgets(fileID);
+                joints{frame,2}=fscanf(fileID,'Color frame: %d/n');
+            else
+                joints{frame,2}=fscanf(fileID,'Color frame: %d/n');
+            end
+            
         end
     end
 

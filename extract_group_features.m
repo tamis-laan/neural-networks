@@ -1,12 +1,7 @@
-function [features] = extract_group_features_sitting(joints,label)
-    features = [];
-    for i = 1:length(joints) 
-        features = [features;extract_group_feature_sitting(joints,label,i)];
-    end
-end
-
-function out = extract_group_feature_sitting(joints,label,frame)
+function out = extract_group_features(joints,frame)
     %%Extract joint data
+    HipCenter       = joints{frame}(1,:);
+    Spine           = joints{frame}(2,:);
     ShoulderCenter  = joints{frame}(3,:);
     Head            = joints{frame}(4,:);
     ShoulderLeft    = joints{frame}(5,:);
@@ -17,7 +12,19 @@ function out = extract_group_feature_sitting(joints,label,frame)
     ElbowRight      = joints{frame}(10,:);
     WristRight      = joints{frame}(11,:);
     HandRight       = joints{frame}(12,:);
+    HipLeft         = joints{frame}(13,:);
+    KneeLeft        = joints{frame}(14,:);
+    AnkleLeft       = joints{frame}(15,:);  
+    FootLeft        = joints{frame}(16,:);
+    HipRight        = joints{frame}(17,:);
+    KneeRight       = joints{frame}(18,:);
+    AnkleRight      = joints{frame}(19,:);
+    FootRight       = joints{frame}(20,:);
     %% Extract Features
+                        t   = Spine-HipCenter;
+    hip_spine               = t/norm(t);
+                        t   = ShoulderCenter-Spine;
+    spine_shoulders         = t/norm(t);
                         t   = Head-ShoulderCenter;
     shoulders_head          = t/norm(t);
                         t   = ShoulderLeft-ShoulderCenter;
@@ -25,7 +32,7 @@ function out = extract_group_feature_sitting(joints,label,frame)
                         t   = ShoulderRight-ShoulderCenter;
     shoulders_shoulderright = t/norm(t);
     
-    body_angle              = acos( ShoulderCenter/norm(ShoulderCenter) * [0,1,0]' )/pi * 180;
+    body_angle              = acos( ( (ShoulderCenter-HipCenter)/norm(ShoulderCenter-HipCenter) ) * [0,1,0]' )/pi * 180;
     
                         t1  = (ShoulderLeft-ElbowLeft)/norm(ShoulderLeft-ElbowLeft);
                         t2  = (WristLeft-ElbowLeft)/norm(WristLeft-ElbowLeft);
@@ -43,8 +50,7 @@ function out = extract_group_feature_sitting(joints,label,frame)
                         t2  = (HandRight-WristRight)/norm(HandRight-WristRight);
     hand_angle_right        = acos(t1*t2')/pi * 180;
     
-    out = [label,shoulders_head,shoulders_shoulderleft,shoulders_shoulderright,body_angle,elbow_angle_left,hand_angle_left,elbow_angle_right,hand_angle_right];
+    out = [hip_spine,spine_shoulders,shoulders_head,shoulders_shoulderleft,shoulders_shoulderright,body_angle,elbow_angle_left,hand_angle_left,elbow_angle_right,hand_angle_right]
 
 end
-
 
