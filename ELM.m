@@ -1,4 +1,4 @@
-function [TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy] = elm(TrainingData_File, TestingData_File, Elm_Type, NumberofHiddenNeurons, ActivationFunction)
+function [TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy] = elm(traing_data, testing_data, Elm_Type, NumberofHiddenNeurons, ActivationFunction)
 
 % Usage: elm(TrainingData_File, TestingData_File, Elm_Type, NumberofHiddenNeurons, ActivationFunction)
 % OR:    [TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy] = elm(TrainingData_File, TestingData_File, Elm_Type, NumberofHiddenNeurons, ActivationFunction)
@@ -41,16 +41,12 @@ REGRESSION=0;
 CLASSIFIER=1;
 
 %%%%%%%%%%% Load training dataset
-train_data=load(TrainingData_File);
-T=train_data(:,1)';
-P=train_data(:,2:size(train_data,2))';
-clear train_data;                                   %   Release raw training data array
+T=traing_data(:,1)';
+P=testing_data(:,2:size(train_data,2))';
 
 %%%%%%%%%%% Load testing dataset
-test_data=load(TestingData_File);
 TV.T=test_data(:,1)';
 TV.P=test_data(:,2:size(test_data,2))';
-clear test_data;                                    %   Release raw testing data array
 
 NumberofTrainingData=size(P,2);
 NumberofTestingData=size(TV.P,2);
