@@ -1,4 +1,4 @@
-function [TrainingTime,TrainingAccuracy] = elm_train(TrainingData_File, Elm_Type, NumberofHiddenNeurons, ActivationFunction)
+function [TrainingTime,TrainingAccuracy] = elm_train(Data, Elm_Type, NumberofHiddenNeurons, ActivationFunction)
 
 % Usage: elm_train(TrainingData_File, Elm_Type, NumberofHiddenNeurons, ActivationFunction)
 % OR:    [TrainingTime, TrainingAccuracy] = elm_train(TrainingData_File, Elm_Type, NumberofHiddenNeurons, ActivationFunction)
@@ -35,10 +35,8 @@ REGRESSION=0;
 CLASSIFIER=1;
 
 %%%%%%%%%%% Load training dataset
-train_data=load(TrainingData_File);
-T=train_data(:,1)';
-P=train_data(:,2:size(train_data,2))';
-clear train_data;                                   %   Release raw training data array
+T=Data(:,1)';
+P=Data(:,2:size(Data,2))';
 
 NumberofTrainingData=size(P,2);
 NumberofInputNeurons=size(P,1);

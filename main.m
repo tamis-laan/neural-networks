@@ -6,9 +6,9 @@
 
 %%
 
-[train_set, test_set]=create_sets('filecodes', 'Joints', 0.7, 50);
+[train_set, test_set]=create_sets('filecodes', 'Joints', 0.7, 10);
 
 
 %%
-[~, acc]=elm_train(train_set,1,50,'sig')
-[~, acc2]=elm_predict(test_set(:,2:end));
+elm_train(train_set,1,50,'sig')
+previsao=elm_predict(test_set(:,2:end));
