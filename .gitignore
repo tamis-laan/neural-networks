@@ -1,5 +1,6 @@
+data/
 Joints/
 *.m~
 *.asv
 *.mat
-data/
+
