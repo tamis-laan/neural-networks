@@ -1,0 +1,45 @@
+Skeleton frame: 	133
+Hierarchical orientation of boneHipCenter-HipCenter	[1	0	0	0]
+Hierarchical orientation of boneHipCenter-Spine	[1	0	0	0]
+Hierarchical orientation of boneSpine-ShoulderCenter	[0.1723152	-0.003761065	0.9833269	-0.05798036]
+Hierarchical orientation of boneShoulderCenter-Head	[0.9558604	0.2918542	-0.009911667	0.03246196]
+Hierarchical orientation of boneShoulderCenter-ShoulderLeft	[0.5064761	-3.677657E-09	2.206594E-08	-0.862254]
+Hierarchical orientation of boneShoulderLeft-ElbowLeft	[0.9427796	-0.07452513	-0.2137122	-0.2448257]
+Hierarchical orientation of boneElbowLeft-WristLeft	[0.788914	0.6145037	-1.770768E-09	-1.150999E-08]
+Hierarchical orientation of boneWristLeft-HandLeft	[0.8593762	0.4218647	0.1273381	0.2593991]
+Hierarchical orientation of boneShoulderCenter-ShoulderRight	[0.5161498	-1.082619E-08	-1.804365E-08	0.8564983]
+Hierarchical orientation of boneShoulderRight-ElbowRight	[0.9639693	-0.02701255	0.1861062	0.1881437]
+Hierarchical orientation of boneElbowRight-WristRight	[0.9265838	0.3760883	8.040914E-09	8.040914E-09]
+Hierarchical orientation of boneWristRight-HandRight	[0.9998221	-0.01463874	0.0001741734	-0.01189423]
+Hierarchical orientation of boneHipCenter-HipLeft	[1	0	0	0]
+Hierarchical orientation of boneHipLeft-KneeLeft	[1	0	0	0]
+Hierarchical orientation of boneKneeLeft-AnkleLeft	[1	0	0	0]
+Hierarchical orientation of boneAnkleLeft-FootLeft	[1	0	0	0]
+Hierarchical orientation of boneHipCenter-HipRight	[1	0	0	0]
+Hierarchical orientation of boneHipRight-KneeRight	[1	0	0	0]
+Hierarchical orientation of boneKneeRight-AnkleRight	[1	0	0	0]
+Hierarchical orientation of boneAnkleRight-FootRight	[1	0	0	0]
+Tracked Skeleton Frame: 	1
+133	1	0	HipCenter	0	0	0
+133	1	1	Spine	0	0	0
+133	1	2	ShoulderCenter	-0.6832859	0.3136526	3.719872
+133	1	3	Head	-0.6185028	0.5008644	3.574003
+133	1	4	ShoulderLeft	-0.8350246	0.2205937	3.675972
+133	1	5	ElbowLeft	-0.9404317	0.04342131	3.666988
+133	1	6	WristLeft	-0.992057	0.008489172	3.395488
+133	1	7	HandLeft	-0.9922992	0.04803536	3.364031
+133	1	8	ShoulderRight	-0.5254851	0.2296038	3.787353
+133	1	9	ElbowRight	-0.3614773	0.0281415	3.866045
+133	1	10	WristRight	-0.1249153	-0.09291998	3.765704
+133	1	11	HandRight	-0.04470667	-0.1335814	3.735554
+133	1	12	HipLeft	0	0	0
+133	1	13	KneeLeft	0	0	0
+133	1	14	AnkleLeft	0	0	0
+133	1	15	FootLeft	0	0	0
+133	1	16	HipRight	0	0	0
+133	1	17	KneeRight	0	0	0
+133	1	18	AnkleRight	0	0	0
+133	1	19	FootRight	0	0	0
+Tracking mode 	Seated
+Color frame: 	190
+Skeleton frame: 	134
