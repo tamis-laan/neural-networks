@@ -22,7 +22,7 @@ test_dataset = process_files(test_files,test_labels,10)
 
 %% Train for different number of neurons and save results
 
-x = []
+x  = []
 y1 = []
 y2 = []
 for i=1:50:1000
