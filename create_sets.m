@@ -11,7 +11,18 @@ function [train_set, test_set]=create_sets(filecodes, data_folder, train_size, f
 %   file_num - ammount of files you want to use (test+train sets)
 %s
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%% 
+% clc
+% clear all
+% 
+% data_folder='Joints';
+% 
+% filecodes='filecodes';
+% 
+% train_size=0.7;
+% 
+% file_num=10;
+%% 
 data_files=dir(fullfile(data_folder, '*.txt'));
 
 rand_seq=randperm(size(data_files,1));
@@ -36,25 +47,56 @@ for i=1:file_num
     
 end
 
-train_set=extract_group_features_sitting(joints_cell{1}, mood(1));
+train_set=[];
+features_window=[];
 
-for i=2:size(joints_cell,1)*train_size
+for i=1:size(joints_cell,1)*train_size
 
-    features_train=extract_group_features_sitting(joints_cell{i}, mood(i));
-    
-    train_set=[train_set; features_train];
+    start=joints_cell{i}{1,2};
+    finish=joints_cell{i}{size(joints_cell{i},1),2};
+    window=floor((finish-start)/10);
+    j=1;
+    features_cell=[mood(i)];
+    for k=start:window:finish-2*window
+        counter=0;
+        features_window=zeros(1,14);
+        while joints_cell{i}{j+counter,2}<k+window
+            features_window_new=extract_frame_feature_sitting(joints_cell{i}, j+counter);
+            counter=counter+1;
+            j=j+1;
+            features_window=features_window+features_window_new;
+        end
+      features_window=features_window./counter;
+      features_cell=[features_cell features_window];
+    end
+    train_set=[train_set; features_cell];
     
 end
 
 
-test_set=extract_group_features_sitting(joints_cell{i+1},mood(i+1));
+test_set=[];
+features_window=[];
 
-for i=i+2:size(joints_cell,1)
-   
-    features_test=extract_group_features_sitting(joints_cell{i}, mood(i));
-    
-    test_set=[test_set; features_test];
+for i=1:size(joints_cell,1)*(1-train_size)
+
+    start=joints_cell{i}{1,2};
+    finish=joints_cell{i}{size(joints_cell{i},1),2};
+    window=floor((finish-start)/10);
+    j=1;
+    features_cell=[mood(i)];
+    for k=start:window:finish-2*window
+        counter=0;
+        features_window=zeros(1,14);
+        while joints_cell{i}{j+counter,2}<k+window
+            features_window_new=extract_frame_feature_sitting(joints_cell{i}, j+counter);
+            counter=counter+1;
+            j=j+1;
+            features_window=features_window+features_window_new;
+        end
+      features_window=features_window./counter;
+      features_cell=[features_cell features_window];
+    end
+    test_set=[test_set; features_cell];
     
 end
-
-end
+ end
